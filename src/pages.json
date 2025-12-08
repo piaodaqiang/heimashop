@@ -13,8 +13,8 @@
     {
       "path": "pages/index/index",
       "style": {
-        "navigationStyle": "custom",
-        "navigationBarTextStyle": "white",
+        "navigationStyle": "default",
+        "navigationBarTextStyle": "black",
         "navigationBarTitleText": "首页"
       }
     },
