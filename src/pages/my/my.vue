@@ -19,7 +19,7 @@ const getData = async () => {
       @tap="
         memberStore.setProfile({
           nickname: '黑马先锋',
-          token: '123',
+          // token: '123',
         })
       "
       size="mini"
