@@ -34,8 +34,8 @@ uni.addInterceptor('uploadFile', httpInterceptor)
 
 // 请求函数
 /*
- *@param UniApp.RequestOptions 请求配置对象
- *@returns Promise
+ * @param UniApp.RequestOptions 请求配置对象
+ * @returns Promise
  */
 
 // 添加类型，支持泛型
@@ -52,8 +52,32 @@ export const http = <T>(options: UniApp.RequestOptions) => {
       ...options,
       // 3. 请求成功
       success(res) {
-        // 4.成功回调，提取核心数据
-        resolve(res.data as Data<T>)
+        if (res.statusCode === 200 && res.statusCode < 300) {
+          // 成功状态码： 200-299
+          resolve(res.data as Data<T>)
+        } else if (res.statusCode === 401) {
+          // 401: 表示登录失效或token过期，需要重新登录
+          // 穷处本地信息
+          const memberStore = useMemberStore()
+          memberStore.clearProfile()
+          // 跳转回登录页
+          uni.navigateTo({ url: 'pages/login/login' }) // 注意要写{}，因为navigateTo的参数是跳转配置对象
+          reject(res.data) // 抛出错误信息
+        } else {
+          // 其他错误
+          uni.showToast({
+            title: '请求失败',
+            icon: 'none',
+          })
+          reject(res.data) // 抛出错误信息
+        }
+      },
+      // 请求失败
+      fail(err) {
+        uni.showToast({
+          icon: 'error',
+          title: '网络错误',
+        })
       },
     })
   })

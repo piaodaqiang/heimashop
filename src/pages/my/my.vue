@@ -8,7 +8,7 @@ const memberStore = useMemberStore()
 const getData = async () => {
   const res = await http<BannerItem[]>({
     method: 'GET',
-    url: '/home/banner',
+    url: '',
   })
   console.log('请求成功', res.result) // result 是 BannerItem[](可以根据实际情况修改) 类型数组
 }
