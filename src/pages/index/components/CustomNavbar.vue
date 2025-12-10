@@ -1,6 +1,9 @@
 <script setup lang="ts">
 // 获取屏幕边界到安全区域举例
 const { safeAreaInsets } = uni.getSystemInfoSync()
+// 语法解释：{} 对象解构赋值，从 uni.getSystemInfoSync() 方法返回的对象中提取 safeAreaInsets 属性值
+// getSystemInfoSync() 方法用于获取设备的系统信息，包括屏幕尺寸、像素比、安全区域等
+console.log('安全区域边距信息:', safeAreaInsets)
 </script>
 
 <template>

@@ -13,7 +13,7 @@
     {
       "path": "pages/index/index",
       "style": {
-        "navigationStyle": "default",
+        "navigationStyle": "custom", // 设置为自定义导航栏样式
         "navigationBarTextStyle": "black",
         "navigationBarTitleText": "首页"
       }
